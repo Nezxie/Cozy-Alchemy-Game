@@ -1,0 +1,18 @@
+:root {
+  --bg: #16171d;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #16171d;
+  }
+}
+
+body {
+  margin: 0 auto;
+}
+
+#root {
+  max-width: 100%;
+  min-height: 100svh;
+}
