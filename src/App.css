@@ -20,7 +20,14 @@
   width: 80px;
   height: 80px;
   object-fit: contain;
-  cursor: pointer;
+  cursor: url('./assets/cursor-grab.png'), grab;
+}
+.ingredient:active{
+  cursor: url('./assets/cursor-grabbing.png'), grabbing;
+}
+
+.full-cauldron-state .ingredient{
+  cursor: url('./assets/cursor-not-allowed.png'), not-allowed;
 }
 
 .cauldron-holder{
@@ -28,13 +35,18 @@
   margin-top: 2em;
   background-color: pink;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ingredient-list{
+  background-color: yellow;
 }
 
 .cauldron{
   background-color: palevioletred;
   width: 300px;
-  height: auto;
+  height: 100px;
   object-fit: contain;
 }
 
@@ -44,4 +56,11 @@
 
 .mix-button{
   margin-top: 2em;
+  &.full-cauldron-state{
+    background-color: red;
+  }
+}
+
+button{
+  cursor: url('./assets/cursor-pointer.png'), pointer;
 }
