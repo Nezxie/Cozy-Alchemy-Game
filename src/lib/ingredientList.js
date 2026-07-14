@@ -1,104 +1,113 @@
+import mushroom1 from '../assets/ingredients/mushroom1.png';
+import frog from '../assets/ingredients/frog.png';
+import flower from '../assets/ingredients/flower.png';
+import blood from '../assets/ingredients/blood.png';
+import eye from '../assets/ingredients/eye.png';
+import glitter from '../assets/ingredients/glitter.png';
+import crystal from '../assets/ingredients/crystal.png';
+import deviltail from '../assets/ingredients/devil.png';
+import tears from '../assets/ingredients/tears.png';
+import shadow from '../assets/ingredients/shadow.png';
+import feather from '../assets/ingredients/feather.png';
+import tooth from '../assets/ingredients/tooth.png';
+import cheese from '../assets/ingredients/cheese.png';
+import moonlight from '../assets/ingredients/moon.png';
+import moss from '../assets/ingredients/moss.png';
+import ghostpepper from '../assets/ingredients/pepper.png';
+import lavender from '../assets/ingredients/lavender.png';
+import mushroom2 from '../assets/ingredients/mushroom2.png';
+
 export const ingredientList = [
     {
         id:1,
         name:'brown mushroom',
-        image:'./mushroom1.svg',
+        image:mushroom1,
 
     },
     {
         id:2,
         name:'frog',
-        image:'./frog.svg',
+        image:frog,
     },
     {
         id:3,
         name:'white flower petals',
-        image:'./flower.svg',
+        image:flower,
     },
     {
         id:4,
         name:'blood vial',
-        image:'./blood.svg',
+        image:blood,
     },
     {
         id:5,
         name:'red mushroom',
-        image:'./mushroom2.svg',
+        image:mushroom2,
     },
     {
         id:6,
         name:'eye',
-        image:'./eye.svg',
+        image:eye,
     },
     {
         id:7,
         name:'glitter',
-        image:'./glitter.svg',
+        image:glitter,
     },
     {
         id:8,
         name:'slice of shadow',
-        image:'./shadow.svg',
-    },
-    {
-        id:9,
-        name:'salt lamp',
-        image:'./saltlamp.svg',
+        image:shadow,
     },
     {
         id:10,
-        name:'sugar',
-        image:'./sugar.svg',
+        name:'crystal',
+        image:crystal,
     },
     {
         id:11,
         name:'devil tail',
-        image:'./deviltail.svg',
+        image:deviltail,
     },
     {
         id:12,
         name:'tears',
-        image:'./tears.svg',
+        image:tears,
     },
     {
         id:13,
         name:'raven feather',
-        image:'./feather.svg',
+        image:feather,
     },
     {
         id:14,
         name:'a tooth',
-        image:'./tooth.svg',
+        image:tooth,
     },
     {
         id:15,
-        name:'mozarella stick',
-        image:'./cheese.svg',
+        name:'cheese',
+        image:cheese,
     },
     {
         id:16,
         name:'moonlight',
-        image:'./moonlight.svg',
-    },
-    {
-        id:17,
-        name:'crystal shard',
-        image:'./crystal.svg',
+        image:moonlight,
     },
     {
         id:18,
         name:'moss',
-        image:'./moss.svg',
+        image:moss,
     },
     {
         id:19,
         name:'ghost pepper',
-        image:'./ghostpepper.svg',
+        image:ghostpepper,
     },
     {
         id:20,
         name:'lavender',
-        image:'./lavender.svg',
+        image:lavender,
     },
 
 ];

@@ -4,6 +4,7 @@ import { ingredientList } from './lib/ingredientList.js'
 import Header from './Header'
 import Ingredient from './Ingredient'
 import {calculatePotion} from './lib/potions.js'
+import cauldron_img from './assets/cauldron/cauldron.png';
 
 function App() {
   const [ingredients, setIngredients] = useState([]);
@@ -62,7 +63,7 @@ function App() {
           <div className='ingredient-list'>
             {
               ingredients.length>0&&
-              <ul className='ingredients-list'>
+              <ul>
                 {ingredients.map((item, id)=>{
                   return <li key={id}>{getIngredientName(item)}</li>
                 })
@@ -73,9 +74,12 @@ function App() {
               ingredients.length>=5&&
               <p className='full-cauldron-info'>Your cauldron is full. It's time to mix the potion.</p>
             }
+            {
+              ingredients.length<=0&&
+              <p>Add an ingredient from the shelf to the cauldron to start brewing.</p>
+            }
           </div>
-          <div className='cauldron'>
-          </div>
+          <img className='cauldron' src={cauldron_img} alt="cauldron"/>
         </div>
         <div className='buttons'>
         <button className={`mix-button ${ingredients.length>=5&&'full-cauldron-state'}`} onClick={onMixIngredient}>Mix</button>
@@ -83,11 +87,13 @@ function App() {
         </div>
       </div>
       <dialog id="potion-dialog" ref={dialogRef}>
-        <p>{lastPotion?.name}</p>
-        <p>{lastPotion?.description}</p>
-        <button id="close" onClick={closeDialog}>
-          Close
-        </button>
+        <div className='dialog-contents'>
+          <h2>{lastPotion?.name}</h2>
+          <p>{lastPotion?.description}</p>
+          <button className="modal-close-btn" id="close" onClick={closeDialog}>
+            Cool!
+          </button>
+        </div>
       </dialog>
     </>
   )
