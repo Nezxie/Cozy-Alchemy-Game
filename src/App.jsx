@@ -79,7 +79,9 @@ function App() {
               <p>Add an ingredient from the shelf to the cauldron to start brewing.</p>
             }
           </div>
-          <img className='cauldron' src={cauldron_img} alt="cauldron"/>
+          <div className={`cauldron ${ingredients.length>0&&'bubbling'}`}>
+            <img src={cauldron_img} alt="cauldron"/>
+          </div>
         </div>
         <div className='buttons'>
         <button className={`mix-button ${ingredients.length>=5&&'full-cauldron-state'}`} onClick={onMixIngredient}>Mix</button>

@@ -74,10 +74,38 @@
   }
 }
 
-.cauldron{
+.cauldron > img{
   width: 300px;
   background-color: transparent;
   align-self: end;
+}
+.cauldron{
+  position: relative;
+}
+
+.cauldron.bubbling::after{
+  content: " ";
+ display: inline-block;
+  background-color: transparent;
+  background-image: url('./assets/cauldron/bubbles-spritesheet.png');
+  width: 225px;
+  height: 135px;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: -20px;
+  left: 30px;
+  animation: cauldron-bubbles 1s steps(5) infinite;
+  will-change: background-position;
+}
+
+@keyframes cauldron-bubbles {
+0%
+{
+  background-position: 0 0;
+}
+100% {
+    background-position: 0 -675px;
+  }
 }
 
 .buttons{

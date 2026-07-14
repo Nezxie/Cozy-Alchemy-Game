@@ -9,3 +9,20 @@ to install then
 ```run vite```
 and open the localhost link provided in the console.
 Or just visit [i'll add _github link_ here later] and play. 
+
+
+to do:
+- dnd
+- waga skladnikow
+- faktyczne liczenie potki
+- tło
+- tekstura półki
+- ilustracje potionek
+- efekty dzwiekowe: 
+    - mix
+    - flush
+    - insert ingredient
+    - ewentualnie pick up ingredient
+    - może muzyka wtedy przyciski żeby ją wyciszyć
+- jakies smieszne animacje typu babelki, typu gwiazdki na otwarciu modalu z potka itd
+- dostosowanie pod mobile
