@@ -25,7 +25,7 @@ function App() {
     } 
   };
 
-  function onPickIngredient(id){
+  function onPickIngredient(id, weigth){
     if(ingredients.length<5){
       setIngredients([...ingredients, id]);  
     }
@@ -50,12 +50,11 @@ function App() {
     return name;
   }
   const shelfContents = ingredientList.map((item)=>{
-    return <Ingredient key={item.id} name={item?.name} image={item?.image} onClick={()=>{onPickIngredient(item.id)}}/> 
+    return <Ingredient key={item.id} name={item?.name} image={item?.image} onClick={()=>{onPickIngredient(item.id, item?.weight)}}/> 
   });
   return (
     <>
       <div className="game-container">
-        {/* <Header/> */}
         <div className={`shelf ${ingredients.length>=5?'full-cauldron-state':''}`}>
           {shelfContents}
         </div>
