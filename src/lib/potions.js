@@ -1,9 +1,15 @@
 export function calculatePotion(ingredients){
-  const potion = potions[Math.floor(Math.random() * potions.length)];
-  return {
-    name: potion.name,
-    sprite: potion.sprite,
-    description: potion.description
+    const ingredientsSum = ingredients.reduce(
+        (acc, c) => acc + c,
+        0,
+    );
+    const matchingPotions = potions.filter(potion => potion.check(ingredientsSum));
+    const potion = matchingPotions[Math.floor(Math.random() * matchingPotions.length)];
+
+    return {
+        name: potion.name,
+        sprite: potion.sprite,
+        description: potion.description
     }
 }
 

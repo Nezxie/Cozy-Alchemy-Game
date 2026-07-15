@@ -15,7 +15,12 @@ body {
   font-family: "Lugrasimo", cursive;
   color:#3f3826;
   background-color: #f9f6ed;
-
+  background-color: rgba(0, 0, 0, 0.11);
+  background-image: url('./assets/bg.png');
+  background-size:cover;
+  background-repeat: no-repeat;
+  background-position: 0% 40%;
+  background-blend-mode: multiply;
 }
 
 button,

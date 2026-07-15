@@ -55,8 +55,8 @@ function App() {
   return (
     <>
       <div className="game-container">
-        <Header/>
-        <div className={`shelf ${ingredients.length>=5&&'full-cauldron-state'}`}>
+        {/* <Header/> */}
+        <div className={`shelf ${ingredients.length>=5?'full-cauldron-state':''}`}>
           {shelfContents}
         </div>
         <div className='cauldron-holder'>
@@ -79,7 +79,7 @@ function App() {
               <p>Add an ingredient from the shelf to the cauldron to start brewing.</p>
             }
           </div>
-          <div className={`cauldron ${ingredients.length>0&&'bubbling'}`}>
+          <div className={`cauldron ${ingredients.length>0?'bubbling':""}`}>
             <img src={cauldron_img} alt="cauldron"/>
           </div>
         </div>
