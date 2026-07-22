@@ -30,8 +30,6 @@ export function calculatePotion(ingredients){
     const matchingPotions = potions.filter(potion => potion.check(ingredientsSum));
     const potion = weightedRandom(matchingPotions);
 
-    console.log(ingredientsSum, matchingPotions)
-
     return {
         name: potion.name,
         sprite: potion.sprite,

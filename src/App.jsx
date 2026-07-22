@@ -1,14 +1,23 @@
 import './App.css'
+
 import { useState, useRef } from 'react'
+import {DragDropProvider} from '@dnd-kit/react';
+import {Cursor} from '@dnd-kit/dom';
+
+import Cauldron from './Cauldron.jsx'
+import PotionDialog from './PotionDialog.jsx'
+import IngredientList from './IngredientList.jsx'
+import Shelf from './Shelf.jsx'
+
 import { ingredientList } from './lib/ingredientList.js'
-import Header from './Header'
-import Ingredient from './Ingredient'
 import {calculatePotion} from './lib/potions.js'
-import cauldron_img from './assets/cauldron/cauldron.png';
+import grabbingCursor from './assets/cursor/cursor-grabbing.png'
+
 
 function App() {
   const [ingredients, setIngredients] = useState([]);
   const [lastPotion, setLastPotion] = useState({});
+  const [activeDragId, setActiveDragId] = useState(null);
   const dialogRef = useRef(null);
   const maxIngredients = 5;
 
@@ -25,8 +34,8 @@ function App() {
     } 
   };
 
-  function onPickIngredient(id, weigth){
-    if(ingredients.length<5){
+  function onPickIngredient(id){
+    if(ingredients.length<maxIngredients){
       setIngredients([...ingredients, id]);  
     }
   }
@@ -44,58 +53,42 @@ function App() {
   function onFlushCauldron(){
     emptyCauldron();
   }
-
-  function getIngredientName(id){
-    const name = ingredientList.find((element) => element.id === id).name;
-    return name;
+  function onDragStart(operation){
+    setActiveDragId(operation.source.id);
   }
-  const shelfContents = ingredientList.map((item)=>{
-    return <Ingredient key={item.id} name={item?.name} image={item?.image} onClick={()=>{onPickIngredient(item.id, item?.weight)}}/> 
-  });
+
+  function onDragEnd(event,id=1){
+    setActiveDragId(null);
+    if (event.canceled) return;
+    const {source,target} = event.operation;
+      if(target?.id === 'cauldron'){
+      onPickIngredient(source?.id);
+    }
+  }
+
   return (
     <>
       <div className="game-container">
-        <div className={`shelf ${ingredients.length>=5?'full-cauldron-state':''}`}>
-          {shelfContents}
-        </div>
+      <DragDropProvider
+        plugins={(defaults) => [
+          ...defaults,
+          Cursor.configure({ cursor: `url("${grabbingCursor}"),grabbing` }),
+        ]}
+        onDragStart={({operation})=>{onDragStart(operation)}}
+        onDragEnd={(event) => {onDragEnd(event)}}  
+      >
+        <Shelf cauldronFull={ingredients.length>=maxIngredients} ingredientList={ingredientList} onPickIngredient={onPickIngredient}/>
         <div className='cauldron-holder'>
-          <div className='ingredient-list'>
-            {
-              ingredients.length>0&&
-              <ul>
-                {ingredients.map((item, id)=>{
-                  return <li key={id}>{getIngredientName(item)}</li>
-                })
-                }
-              </ul>
-            }
-            {
-              ingredients.length>=5&&
-              <p className='full-cauldron-info'>Your cauldron is full. It's time to mix the potion.</p>
-            }
-            {
-              ingredients.length<=0&&
-              <p>Add an ingredient from the shelf to the cauldron to start brewing.</p>
-            }
-          </div>
-          <div className={`cauldron ${ingredients.length>0?'bubbling':""}`}>
-            <img src={cauldron_img} alt="cauldron"/>
-          </div>
+          <IngredientList ingredients={ingredients} ingredientList={ingredientList}/>
+            <Cauldron ingredients={ingredients}/>
         </div>
+        </DragDropProvider>
         <div className='buttons'>
         <button className={`mix-button ${ingredients.length>=5&&'full-cauldron-state'}`} onClick={onMixIngredient}>Mix</button>
         <button className='flush-button' onClick={onFlushCauldron}>Flush</button>
         </div>
       </div>
-      <dialog id="potion-dialog" ref={dialogRef}>
-        <div className='dialog-contents'>
-          <h2>{lastPotion?.name}</h2>
-          <p>{lastPotion?.description}</p>
-          <button className="modal-close-btn" id="close" onClick={closeDialog}>
-            Cool!
-          </button>
-        </div>
-      </dialog>
+      <PotionDialog lastPotion={lastPotion} ref={dialogRef} closeDialog={closeDialog}/>
     </>
   )
 }
