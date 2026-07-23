@@ -12,8 +12,6 @@ Or just visit [i'll add _github link_ here later] and play.
 
 
 to do:
-- dnd
-- ilustracje potionek (nie)
 - efekty dzwiekowe: 
     - mix
     - flush
@@ -21,4 +19,3 @@ to do:
     - ewentualnie pick up ingredient
     - może muzyka wtedy przyciski żeby ją wyciszyć (nie)
 - jakies smieszne animacje typu babelki, typu gwiazdki na otwarciu modalu z potka itd (nie)
-- dostosowanie pod mobile (meeh)

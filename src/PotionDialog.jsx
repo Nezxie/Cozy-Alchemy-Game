@@ -1,4 +1,12 @@
+import { useEffect } from "react";
+import modalBg from "./assets/banerModal.png";
+
 export default function PotionDialog({lastPotion, ref, closeDialog}){
+  useEffect(() => {
+      const img = new Image();
+      img.src = modalBg;
+    }, []);
+    
     return(
     <dialog id="potion-dialog" ref={ref}>
         <div className='dialog-contents'>

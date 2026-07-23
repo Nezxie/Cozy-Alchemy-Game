@@ -9,6 +9,10 @@
   }
 }
 
+html{
+  scrollbar-gutter: stable;
+}
+
 body {
   margin: 0 auto;
   cursor: url('./assets/cursor/cursor.png'), auto; 
@@ -31,4 +35,12 @@ button:hover{
 #root {
   max-width: 100%;
   min-height: 100svh;
+}
+
+@media only screen and (max-width: 900px){
+  body{
+    background-position: 0% 0%;
+    background-repeat: repeat-y;
+
+  }
 }
