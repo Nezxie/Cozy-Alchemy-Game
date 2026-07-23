@@ -1,5 +1,9 @@
 import { ingredientList } from "./ingredientList";
 
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 function weightedRandom(items) {
     const totalWeight = items.reduce((sum, item) => sum + item.priority, 0);
 
@@ -16,8 +20,8 @@ function weightedRandom(items) {
     return items[items.length - 1];
 }
 
-export function calculatePotion(ingredients){
-    
+export async function calculatePotion(ingredients){
+    await sleep(2000);
     const ingredientWeights = ingredients.map((id)=>{
         return ingredientList.find((element) => element.id === id).weight;
     })

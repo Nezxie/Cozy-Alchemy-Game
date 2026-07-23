@@ -1,6 +1,6 @@
 import './App.css'
 
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import {DragDropProvider} from '@dnd-kit/react';
 import {Cursor} from '@dnd-kit/dom';
 
@@ -11,19 +11,26 @@ import Shelf from './Shelf.jsx'
 
 import { ingredientList } from './lib/ingredientList.js'
 import {calculatePotion} from './lib/potions.js'
+import {loadSounds, playSound} from './lib/sounds.js'
 import grabbingCursor from './assets/cursor/cursor-grabbing.png'
 
 
 function App() {
   const [ingredients, setIngredients] = useState([]);
   const [lastPotion, setLastPotion] = useState({});
+  const [isBrewing, setIsBrewing] = useState(false);
   const [activeDragId, setActiveDragId] = useState(null);
   const dialogRef = useRef(null);
   const maxIngredients = 5;
 
+  useEffect(()=>{
+    loadSounds();
+  },[]);
   function openDialog(){
     if(dialogRef.current){
       dialogRef.current.showModal();
+      playSound('potionReady');
+      setIsBrewing(false);
     }
   };
 
@@ -36,21 +43,27 @@ function App() {
 
   function onPickIngredient(id){
     if(ingredients.length<maxIngredients){
-      setIngredients([...ingredients, id]);  
+      setIngredients([...ingredients, id]);
+      playSound('addIngredient');  
     }
   }
 
   function emptyCauldron(){
     setIngredients([]);
     setLastPotion({});
+    setIsBrewing(false);
   }
 
-  function onMixIngredient(){
-    setLastPotion(calculatePotion(ingredients));
+  async function onMixIngredient(){
+    playSound('brew');
+    setIsBrewing(true);
+    const potion = await calculatePotion(ingredients)
+    setLastPotion(potion);
     openDialog();
   }
 
   function onFlushCauldron(){
+    playSound('dumpCauldron');
     emptyCauldron();
   }
   function onDragStart(operation){
@@ -80,7 +93,7 @@ function App() {
         <Shelf cauldronFull={ingredients.length>=maxIngredients} ingredientList={ingredientList} onPickIngredient={onPickIngredient}/>
         <div className='cauldron-holder'>
           <IngredientList ingredients={ingredients} ingredientList={ingredientList}/>
-            <Cauldron ingredients={ingredients}/>
+            <Cauldron ingredients={ingredients} isBrewing={isBrewing}/>
         </div>
         </DragDropProvider>
         <div className='buttons'>

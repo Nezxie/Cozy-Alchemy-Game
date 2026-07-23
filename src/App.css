@@ -128,6 +128,34 @@
   }
 }
 
+.cauldron.brewing{
+  animation: shake 0.4s infinite, glow 1s infinite alternate;
+}
+
+@keyframes shake {
+  0%,100% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(-5px) rotate(-2deg);
+  }
+
+  75% {
+    transform: translateX(5px) rotate(2deg);
+  }
+}
+
+@keyframes glow {
+  from {
+    filter: drop-shadow(0 0 25px #eba1f4);
+  }
+  to {
+    filter: drop-shadow(0 0 5px #ce2fdf);
+  }
+
+}
+
 .buttons{
   display: flex;
   gap:1em;
@@ -297,57 +325,3 @@ html:has(dialog[open]) {
     }
   }
 }
-
-/*/////*
-
-
-.ingredient-list{
-  background-color: #F1E9D2;
-  margin-right: 2em;
-  padding: 40px 20px;
-  line-height: 2;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  border-radius: 8px;
-  background-color: transparent;
-  background-image: url('./assets/banerList.png');
-  background-repeat: no-repeat;
-  width: 320px;
-  height: 350px;
-
-  ul{
-    list-style: "– ";
-    padding-left: 40px;
-    max-width: 200px;
-  }
-  p{
-    max-width: 200px;
-    padding-left: 50px;
-  }
-}
-
-.cauldron > img{
-  width: 320px;
-  background-color: transparent;
-  align-self: end;
-}
-.cauldron{
-  position: relative;
-}
-
-.cauldron.bubbling::after{
-  content: " ";
-  display: inline-block;
-  background-color: transparent;
-  background-image: url('./assets/cauldron/bubbles-spritesheet.png');
-  width: 225px;
-  height: 135px;
-  background-repeat: no-repeat;
-  position: absolute;
-  top: -20px;
-  left: 30px;
-  animation: cauldron-bubbles 1s steps(5) infinite;
-  will-change: background-position;
-}
-  */
