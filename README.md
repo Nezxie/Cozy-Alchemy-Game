@@ -8,7 +8,7 @@ Download the files,
 to install then 
 ```run vite```
 and open the localhost link provided in the console.
-Or just visit [i'll add _github link_ here later] and play. 
+Or just visit (https://nezxie.github.io/Cozy-Alchemy-Game/) and play. 
 
 ### Resources
 Art by me
